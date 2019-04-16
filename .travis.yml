@@ -1,0 +1,19 @@
+language: csharp
+mono: none
+os: linux
+dist: xenial
+dotnet: 2.1.4
+script:
+- dotnet build -c Release
+- dotnet test ParallelContext.Tests
+- dotnet pack ParallelContext -c Release
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: dotnet nuget push ./bin/Release/RA_ParallelContext.*.nupkg -k $MYGET_API_KEY -s https://www.myget.org/F/romanageev-ci/api/v2/package
+  on:
+    tags: true
+    condition: $TRAVIS_TAG =~ -release$
+env:
+  global:
+    secure: NW0LwxRLdqEmBt3MqTwWZzGyNmnmxXjOFtfy+ImOrjt57gOmioIrdH5f20kPVYhbTwl+6v/CcuIfzKC42iNy0pZbKff19HDA7ZJegOqz60nEhATzhJKDtZxaSxNT5cm4jCOSUXTn5jgckZJQAxuR609MIhsUVZ0taefdbOX9NDZben7V5p1K2/osxbURRIFqeadWL5ZUWUa9VVQ8upZe+8ebf+eqievcM7EtCZtLk+gLySxc7HT0J3Ayfk0zVQk9UkH6bkMH+R1P/oC1yFGpJhpAUIFcAvqJAgZLUokgK4icC52+s/1PQYmdlvzuRwqmSgDhn5Wq37OOYEza3TxsmOZj9FlZjfpaQ37w35InXmHngu1IjAKHdvzYstaTBPb/nX9zNmJCibnYckOZZYQ4P8j5zadC8YJvs5H3USC1Y9E4VBFyOZFE9zkH5lLxck7acZhPit1rRcOAyYs9iRUtB5igwBwkBikrtIJxhcCxBoNeR29Mdx06RXuW824Ld5x7UD+0QWFcjDvfNw+kfBGg+9Cr0jd48eFLXrp4ICb6sCEwZCwTX6VppSv7pCGfv2shOCT3r4hkkrgs2smZwTnW36wRaSkylCkdcDsWlxe33PJU/icrCbWgdStOKjA+lIuuzDr+ToRl9aaWjc5LNGMeBmM1hfNTVTEwHHGe84MGbqg=
