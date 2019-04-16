@@ -10,7 +10,7 @@ script:
 deploy:
   skip_cleanup: true
   provider: script
-  script: dotnet nuget push ./bin/Release/RA_ParallelContext.*.nupkg -k $MYGET_API_KEY -s https://www.myget.org/F/romanageev-ci/api/v2/package
+  script: dotnet nuget push ./ParallelContext/bin/Release/RA_ParallelContext.*.nupkg -k $MYGET_API_KEY -s https://www.myget.org/F/romanageev-ci/api/v2/package
   on:
     tags: true
     condition: $TRAVIS_TAG =~ -release$
