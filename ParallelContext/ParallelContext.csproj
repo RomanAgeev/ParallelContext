@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="RA_Guards" Version="1.0.0-release" />
+    <PackageReference Include="RA_ParallelCore" Version="1.0.0-release" />
+  </ItemGroup>
+
 </Project>
