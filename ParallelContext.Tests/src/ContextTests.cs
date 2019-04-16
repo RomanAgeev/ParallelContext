@@ -22,12 +22,6 @@ namespace ParallelContext.Tests {
                 });
         }
 
-        [Fact]
-        public void XXXTest() {
-            Action act = () => {};
-            act.Should().Throw<Exception>();
-        }
-
         [Theory]
         [InlineData(2)]
         [InlineData(5)]
